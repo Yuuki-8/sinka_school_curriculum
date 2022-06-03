@@ -1,24 +1,46 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Dockerイメージのビルド
+```
+docker-compose up -d --build
+docker compose exec app bin/setup
+```
+## webpackインストール
 
-Things you may want to cover:
+```
+docker compose exec app  bundle install
+docker compose exec app rails webpacker:install
+```
 
-* Ruby version
+## データベースへアクセス権限付与
 
-* System dependencies
+```
+docker-compose exec db mysql -u root -p -e"$(cat db/grant_user.sql)"
+Enter password: db_root_password
 
-* Configuration
+docker-compose exec db mysql -u user_name -p -e"show grants;"
+Enter password: password
 
-* Database creation
+docker-compose exec app rails db:create
+```
+## 静的コード解析
 
-* Database initialization
+```
+docker compose exec app rubocop // チェックのみ
+docker compose exec app rubocop -A // 強制修正
+```
+開発途中で Gemfile を更新したら以下を実行
 
-* How to run the test suite
+```
+docker compose exec app  bundle install
+```
+## 開発データ作成
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+docker compose exec app rails db:seed
+```
+## byebug デバッグ　ログ表示
 
-* Deployment instructions
-
-* ...
+```
+ docker attach shinka_school_app_app_1
+```
