@@ -12,17 +12,18 @@ apt-get update && apt-get install -y yarn
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
         && apt-get install -y nodejs
 
-RUN mkdir -p /var/www/webapp
+RUN mkdir -p /var/www/app
 
-WORKDIR /var/www/webapp
+WORKDIR /var/www/app
 
-ADD Gemfile /var/www/webapp/Gemfile
-ADD Gemfile.lock /var/www/webapp/Gemfile.lock
+ADD Gemfile /var/www/app/Gemfile
+ADD Gemfile.lock /var/www/app/Gemfile.lock
 
 RUN gem install bundler
 RUN bundle install
 
-ADD . /var/www/webapp
+RUN rails webpacker:install
+ADD . /var/www/app
 
 RUN mkdir -p tmp/sockets
 RUN mkdir -p tmp/pids

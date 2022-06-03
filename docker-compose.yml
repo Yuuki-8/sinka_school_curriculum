@@ -9,22 +9,24 @@ services:
       - ./environments/db.env
     command: bundle exec puma -C config/puma.rb
     volumes:
-      - .:/var/www/webapp
-      - public-data:/var/www/webapp/public
-      - tmp-data:/var/www/webapp/tmp
-      - log-data:/var/www/webapp/log
+      - .:/var/www/app
+      - public-data:/var/www/app/public
+      - tmp-data:/var/www/app/tmp
+      - log-data:/var/www/app/log
     depends_on:
       - db
   db:
     image: mysql:8.0
-    env_file:
-      - ./environments/db.env
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
     volumes:
       - db-data:/var/lib/mysql
   adminer:
     image: adminer:latest
     ports:
-      - "9000:8080"
+      - "7000:8080"
     depends_on:
       - db
   web:
@@ -33,8 +35,8 @@ services:
     build:
       context: containers/nginx
     volumes:
-      - public-data:/var/www/webapp/public
-      - tmp-data:/var/www/webapp/tmp
+      - public-data:/var/www/app/public
+      - tmp-data:/var/www/app/tmp
     ports:
       - 80:80
     depends_on:
