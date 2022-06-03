@@ -22,24 +22,11 @@
 ## Dockerイメージのビルド
 ```
 docker-compose up -d --build
-
-```
-## webpackインストール
-
-```
-docker compose exec app  bundle install
-docker compose exec app rails webpacker:install
 ```
 
-## データベースへアクセス権限付与
+## データベース作成
 
 ```
-docker-compose exec db mysql -u root -p -e"$(cat db/grant_user.sql)"
-Enter password: root_password
-
-docker-compose exec db mysql -u user_name -p -e"show grants;"
-Enter password: password
-
 docker-compose exec app rails db:create
 ```
 ## 静的コード解析
