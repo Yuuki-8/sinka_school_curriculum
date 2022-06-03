@@ -35,7 +35,7 @@ docker compose exec app rails webpacker:install
 
 ```
 docker-compose exec db mysql -u root -p -e"$(cat db/grant_user.sql)"
-Enter password: db_root_password
+Enter password: root_password
 
 docker-compose exec db mysql -u user_name -p -e"show grants;"
 Enter password: password
