@@ -1,4 +1,23 @@
-# README
+# sinka_school
+
+簡易的な予約システムを基にしたSINKA SCHOOLの教材です。
+このシステムを基に、エンジニアが知っておくべき最低限の技術を学んでいきましょう。
+# Features
+* 別途資料に沿って進めていくことで、エンジニアに必要な知識が身につきます。
+# Requirement
+
+* ruby 2.7.5
+* rails 6
+* mysql 8.0
+* docker
+* node v12.22.5
+* yarn 1.22.18
+# Installation
+
+以下URLからdocker desktopをインストールしてください。
+
+* https://www.docker.com/products/docker-desktop
+
 
 ## Dockerイメージのビルド
 ```
