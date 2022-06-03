@@ -1,9 +1,28 @@
-# README
+# sinka_school
+
+簡易的な予約システムを基にしたSINKA SCHOOLの教材です。
+このシステムを基に、エンジニアが知っておくべき最低限の技術を学んでいきましょう。
+# Features
+* 別途資料に沿って進めていくことで、エンジニアに必要な知識が身につきます。
+# Requirement
+
+* ruby 2.7.5
+* rails 6
+* mysql 8.0
+* docker
+* node v12.22.5
+* yarn 1.22.18
+# Installation
+
+以下URLからdocker desktopをインストールしてください。
+
+* https://www.docker.com/products/docker-desktop
+
 
 ## Dockerイメージのビルド
 ```
 docker-compose up -d --build
-docker compose exec app bin/setup
+
 ```
 ## webpackインストール
 
@@ -16,7 +35,7 @@ docker compose exec app rails webpacker:install
 
 ```
 docker-compose exec db mysql -u root -p -e"$(cat db/grant_user.sql)"
-Enter password: db_root_password
+Enter password: root_password
 
 docker-compose exec db mysql -u user_name -p -e"show grants;"
 Enter password: password
